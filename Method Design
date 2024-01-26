@@ -1,0 +1,128 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package methods;
+
+/**
+ *
+ * @author pmorris2024
+ */
+public class Methods {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+// Creating a student with default values
+Student student1 = new Student("Parker Chase", 50);
+
+// Creating a student with custom values
+Student student2 = new Student("Preston Morrris", 123);
+
+// Creating a student with custom values and courses     */
+
+Course[] courses = {new Course(), new Course(), new Course()};
+Student student3 = new Student("Andrew Virisimmo", 456, courses);
+
+// Setting test scores for students
+student1.setTestScore(0, 85);
+student1.setTestScore(1, 90);
+student1.setTestScore(2, 88);
+
+student2.setTestScore(0, 75);
+student2.setTestScore(1, 80);
+student2.setTestScore(2, 85);
+
+student3.setTestScore(0, 95);
+student3.setTestScore(1, 92);
+student3.setTestScore(2, 88);
+
+// Displaying student details and average scores
+System.out.println(student1);
+System.out.println("Average Score: " + student1.getAverage());
+
+System.out.println(student2);
+System.out.println("Average Score: " + student2.getAverage());
+
+System.out.println(student3);
+System.out.println("Average Score: " + student3.getAverage());
+}
+}
+
+class Course {
+private int testScore;
+
+// Constructor
+public Course() {
+this.testScore = 0;
+}
+
+// Methods
+public void setTestScore(int score) {
+this.testScore = score;
+}
+
+public int getTestScore() {
+return this.testScore;
+}
+}
+
+class Student {
+private String name;
+private Course[] courses;
+
+// Constructors
+public Student() {
+this.name = "Default Student";
+this.courses = new Course[3];
+for (int i = 0; i < 3; i++) {
+this.courses[i] = new Course();
+}
+}
+
+public Student(String name, int id) {
+this.name = name;
+
+this.courses = new Course[3];
+for (int i = 0; i < 3; i++) {
+this.courses[i] = new Course();
+}
+}
+
+// Additional Constructor to allow initializing courses with custom values
+public Student(String name, int id, Course[] courses) {
+this.name = name;
+this.courses = courses;
+}
+// Methods
+
+public void setTestScore(int courseIndex, int score) {
+this.courses[courseIndex].setTestScore(score);
+}
+
+public int getTestScore(int courseIndex) {
+return this.courses[courseIndex].getTestScore();
+}
+
+public double getAverage() {
+int totalScore = 0;
+for (Course course : this.courses) {
+totalScore += course.getTestScore();
+}
+return (double) totalScore / this.courses.length;
+}
+
+@Override
+public String toString() {
+StringBuilder result = new StringBuilder();
+result.append("Student Details:\n");
+result.append("Name: ").append(this.name).append("\n");
+for (int i = 0; i < 3; i++) {
+result.append("Course ").append(i + 1).append(": ").append(this.courses[i].getTestScore()).append("\n");
+}
+return result.toString();
+}
+}
+
