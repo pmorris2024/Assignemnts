@@ -1,0 +1,136 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tasklists;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ *
+ * @author pmorris2024
+ */
+public class TaskLists {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+// Creating unranked tasks
+Task unrankedTask1 = new Task();
+unrankedTask1.setDescription("Clean my room");
+
+Task unrankedTask2 = new Task();
+unrankedTask2.setDescription("Buy groceries");
+
+// Creating ranked tasks
+Task rankedTask1 = new Task();
+rankedTask1.setPriority(2);
+rankedTask1.setComplexity(3);
+rankedTask1.setDescription("Complete work project");
+
+Task rankedTask2 = new Task();
+rankedTask2.setPriority(1);
+rankedTask2.setComplexity(2);
+rankedTask2.setDescription("Read a book");
+
+Task rankedTask3 = new Task();
+rankedTask3.setPriority(3);
+rankedTask3.setComplexity(1);
+rankedTask3.setDescription("Exercise");
+
+Task rankedTask4 = new Task();
+rankedTask4.setPriority(1);
+rankedTask4.setComplexity(1);
+rankedTask4.setDescription("Prepare dinner");
+
+Task rankedTask5 = new Task();
+rankedTask5.setPriority(2);
+rankedTask5.setComplexity(2);
+rankedTask5.setDescription("Learn a new skill");
+
+// Creating a list of tasks
+List<Task> taskList = new ArrayList<>();
+taskList.add(unrankedTask1);
+taskList.add(unrankedTask2);
+taskList.add(rankedTask1);
+taskList.add(rankedTask2);
+taskList.add(rankedTask3);
+taskList.add(rankedTask4);
+taskList.add(rankedTask5);
+
+// Sorting the tasks based on priority and complexity
+Collections.sort(taskList);
+
+// Displaying the sorted tasks
+for (Task task : taskList) {
+System.out.println("Priority: " + task.getPriority() +
+", Complexity: " + task.getComplexity() +
+", Description: " + task.getDescription());
+}
+}
+}
+
+
+// Priority interface
+interface Priority {
+void setPriority(int priority);
+int getPriority();
+}
+
+// Complexity interface
+interface Complexity {
+void setComplexity(int complexity);
+int getComplexity();
+}
+
+// Task class implementing Priority, Complexity, and Comparable
+class Task implements Priority, Complexity, Comparable<Task> {
+private int priority;
+private int complexity;
+private String description;
+
+// Implementing Priority interface
+public void setPriority(int priority) {
+this.priority = priority;
+}
+
+public int getPriority() {
+return priority;
+}
+
+// Implementing Complexity interface
+public void setComplexity(int complexity) {
+this.complexity = complexity;
+}
+
+public int getComplexity() {
+return complexity;
+}
+
+// Setting task description
+public void setDescription(String description) {
+this.description = description;
+}
+
+public String getDescription() {
+return description;
+}
+
+// Implementing Comparable interface based on priority and then complexity
+@Override
+public int compareTo(Task other) {
+int priorityComparison = Integer.compare(this.priority, other.priority);
+
+if (priorityComparison != 0) {
+return priorityComparison;
+}
+
+return Integer.compare(this.complexity, other.complexity);
+}
+}
+
+
