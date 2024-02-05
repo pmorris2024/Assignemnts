@@ -1,0 +1,55 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package arrayassignment;
+
+import java.util.Arrays;
+import java.util.Collections;
+/**
+ *
+ * @author pmorris2024
+ */
+public class Arrayassignment {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // initalize array with all 7 days of the week
+        String[] weekDays = {"Monday","Tuesday","Wednesday", "Thursday", "Friday", "Saturday","Sunday"};
+        
+        //Print out days of the week, one day per row
+        System.out.println("Original array:");
+        for (String day : weekDays) {
+            System.out.println(day);
+        }
+        
+        //Resize array to 5 and copy just the weekdays
+        //Resizing array to store only weekdays
+        weekDays = Arrays.copyOf(weekDays, 5);
+        
+        //Print days again, one day per row
+        System.out.println("\nResized array with weekdays:");
+        for (String day : weekDays) {
+            System.out.println(day);
+        }
+        // Shuffling method 
+        shuffleArray(weekDays); 
+
+        // Print shuffled days 
+        System.out.println("\nShuffled array:");
+        for (String day : weekDays)
+            { System.out.println(day); 
+
+            }
+         } 
+        // Shuffling method 
+        static void shuffleArray(String[] array)
+        { Collections.shuffle(Arrays.asList(array));  
+        
+             } 
+         }
+
+       
