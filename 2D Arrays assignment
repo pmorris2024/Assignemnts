@@ -1,0 +1,84 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package deckofcard;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
+/**
+ *
+ * @author pmorris2024
+ */
+public class Deckofcard {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+      // Create and shuffle the deck
+        String[][] deckOfCards = createAndShuffleDeck();
+
+        // Deal hands
+        String[][] hands = dealHands(deckOfCards);
+
+        // Display hands
+        char player = 'A';
+        for (String[] hand : hands) {
+            System.out.print("Player " + player + "'s hand: ");
+            for (String card : hand) {
+                System.out.print(card + " ");
+            }
+            System.out.println();
+            player++;
+        }
+    }
+
+    // Function to create and shuffle the deck of cards
+    public static String[][] createAndShuffleDeck() {
+        String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+        String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+        String[][] deck = new String[4][13];
+
+        // Fill the deck
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 13; j++) {
+                deck[i][j] = ranks[j] + " of " + suits[i];
+            }
+        }
+
+        // Shuffle the deck
+        List<String> cardsList = new ArrayList<>();
+        for (String[] suit : deck) {
+            for (String card : suit) {
+                cardsList.add(card);
+            }
+        }
+        Collections.shuffle(cardsList);
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 13; j++) {
+                deck[i][j] = cardsList.get(i * 13 + j);
+            }
+        }
+
+        return deck;
+    }
+
+    // Function to deal hands from the shuffled deck
+    public static String[][] dealHands(String[][] deck) {
+        String[][] hands = new String[4][5];
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 4; j++) {
+                hands[j][i] = deck[j][i];
+            }
+        }
+
+        return hands;
+    }
+}
