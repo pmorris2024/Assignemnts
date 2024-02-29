@@ -1,0 +1,190 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package carproject;
+
+public class Carproject {
+    public static void main(String[] args) {
+        // Create instances of vehicles and print their details
+        Car porsche = new Porsche();
+        System.out.println("Porsche 992 GT3 RS:");
+        System.out.println(porsche);
+
+        Car lamborghini = new Lamborghini();
+        System.out.println("\nLamborghini Aventador SVJ:");
+        System.out.println(lamborghini);
+
+        Boat yacht = new Yacht();
+        System.out.println("\nYacht:");
+        System.out.println(yacht);
+
+        Boat jetSki = new JetSki();
+        System.out.println("\nJet Ski:");
+        System.out.println(jetSki);
+
+        Airplane boeing737 = new Boeing737();
+        System.out.println("\nBoeing 737:");
+        System.out.println(boeing737);
+
+        Airplane airbusA380 = new AirbusA380();
+        System.out.println("\nAirbus A380:");
+        System.out.println(airbusA380);
+
+        SpecialVehicle tank = new Tank();
+        System.out.println("\nTank:");
+        System.out.println(tank);
+
+        SpecialVehicle helicopter = new Helicopter();
+        System.out.println("\nHelicopter:");
+        System.out.println(helicopter);
+    }
+}
+
+class Vehicle {
+    private String modelName;
+    private double maxSpeed;
+    private double mpg;
+    private double weight;
+
+    public Vehicle(String modelName, double maxSpeed, double mpg, double weight) {
+        this.modelName = modelName;
+        this.maxSpeed = maxSpeed;
+        this.mpg = mpg;
+        this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Model: " + modelName + "\nMax Speed: " + maxSpeed + " mph\nMPG: " + mpg + "\nWeight: " + weight + " lbs";
+    }
+}
+
+class Car extends Vehicle {
+    private double horsepower;
+    private double acceleration;
+
+    public Car(String modelName, double maxSpeed, double mpg, double weight, double horsepower, double acceleration) {
+        super(modelName, maxSpeed, mpg, weight);
+        this.horsepower = horsepower;
+        this.acceleration = acceleration;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nHorsepower: " + horsepower + " hp\n0-60 mph: " + acceleration + " seconds";
+    }
+}
+
+class Porsche extends Car {
+    public Porsche() {
+        super("Porsche 992 GT3 RS", 198, 15, 3153, 502, 3.2);
+    }
+}
+
+class Lamborghini extends Car {
+    public Lamborghini() {
+        super("Lamborghini Aventador SVJ", 217, 9, 3649, 759, 2.8);
+    }
+}
+
+class Boat extends Vehicle {
+    private double length;
+    private double maxDistance;
+
+    public Boat(String modelName, double maxSpeed, double mpg, double weight, double length, double maxDistance) {
+        super(modelName, maxSpeed, mpg, weight);
+        this.length = length;
+        this.maxDistance = maxDistance;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nLength: " + length + " feet\nMaximum Distance: " + maxDistance + " nautical miles";
+    }
+}
+
+class Yacht extends Boat {
+    private double price;
+    private int year;
+
+    public Yacht() {
+        super("Yacht", 50, 0.8, 15000, 80, 2000);
+        this.price = 5000000; // example price
+        this.year = 2022; // example year
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nPrice: $" + price + "\nYear: " + year;
+    }
+}
+
+class JetSki extends Boat {
+    private double horsepower;
+
+    public JetSki() {
+        super("Jet Ski", 70, 0.5, 600, 10, 100);
+        this.horsepower = 200; // example horsepower
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nHorsepower: " + horsepower + " hp";
+    }
+}
+
+class Airplane extends Vehicle {
+    private double wingspan;
+    private double maxAltitude;
+
+    public Airplane(String modelName, double maxSpeed, double mpg, double weight, double wingspan, double maxAltitude) {
+        super(modelName, maxSpeed, mpg, weight);
+        this.wingspan = wingspan;
+        this.maxAltitude = maxAltitude;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nWingspan: " + wingspan + " meters\nMax Altitude: " + maxAltitude + " feet";
+    }
+}
+
+class Boeing737 extends Airplane {
+    public Boeing737() {
+        super("Boeing 737", 583, 100.5, 124500, 35.8, 41000);
+    }
+}
+
+class AirbusA380 extends Airplane {
+    public AirbusA380() {
+        super("Airbus A380", 634, 78.0, 276800, 79.8, 43100);
+    }
+}
+
+class SpecialVehicle extends Vehicle {
+    private String specialFeature;
+
+    public SpecialVehicle(String modelName, double maxSpeed, double mpg, double weight, String specialFeature) {
+        super(modelName, maxSpeed, mpg, weight);
+        this.specialFeature = specialFeature;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nSpecial Feature: " + specialFeature;
+    }
+}
+
+class Tank extends SpecialVehicle {
+    public Tank() {
+        super("Tank", 42, 7.0, 68000, "Heavy Armor");
+    }
+}
+
+class Helicopter extends SpecialVehicle {
+    public Helicopter() {
+        super("Helicopter", 200, 80.0, 5500, "Vertical Takeoff");
+    }
+}
